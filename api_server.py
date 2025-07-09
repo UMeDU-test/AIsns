@@ -12,7 +12,7 @@ api_key = os.environ.get("GOOGLE_API_KEY", "AIzaSyAhzaFRQSupPhM-sVaITAeP4aJ1o9Jg
 genai.configure(api_key=api_key)
 
 # --- 使用するモデル ---
-model = genai.GenerativeModel('gemini-2.5-flash')
+model = genai.GenerativeModel('gemini-2.0-flash')
 app = Flask(__name__)
 
 # --- プロンプトのテンプレートを定義 ---
