@@ -3,7 +3,7 @@
 
 header('Content-Type: application/json');
 
-$pythonApiUrl = 'http://localhost:5000/generate-text';
+$pythonApiUrl = 'https://aisns.onrender.com/generate-text';
 $response = ['success' => false, 'error' => '不明なエラーです。'];
 
 // 機能タイプを受け取る (必須)
