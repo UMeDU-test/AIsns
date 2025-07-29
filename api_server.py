@@ -84,7 +84,17 @@ def generate_text_base64():
             image_bytes = base64.b64decode(b64_string)
             img = Image.open(io.BytesIO(image_bytes))
             content_parts.append(img)
-        
+            # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+            # 【重要】画像リサイズ処理を追加してメモリ使用量を削減
+            # 画像の長辺が1024ピクセルを超える場合、アスペクト比を保ったまま縮小する
+            max_size = 1024
+            if img.width > max_size or img.height > max_size:
+                # thumbnailは元の画像オブジェクトを直接変更する
+                img.thumbnail((max_size, max_size))
+            
+            # リサイズ後の画像をcontent_partsに追加
+            content_parts.append(img)
+            # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
         # --- 8. Gemini APIにリクエストを送信 ---
         response = model.generate_content(content_parts)
 
